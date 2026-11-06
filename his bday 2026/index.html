@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 23rd Birthday, Babi! 💙</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap');
+
+:root {
+    --blue: #a9d8f5;
+    --dark-blue: #559acb;
+    --light-blue: #eaf7ff;
+    --white: #ffffff;
+    --text: #45677f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #eaf7ff, #cceaff);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 35px 18px 100px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    animation: fadeIn .5s ease;
+}
+
+.page.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    color: #559acb;
+    font-size: clamp(27px, 6vw, 43px);
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #559acb;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.7;
+    margin: 10px 0;
+}
+
+.subtitle {
+    max-width: 570px;
+    margin: 0 auto 20px;
+}
+
+.script {
+    font-family: 'Pacifico', cursive;
+    color: #559acb;
+}
+
+.card {
+    background: rgba(255,255,255,.92);
+    width: min(560px, 95%);
+    padding: 28px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(85,154,203,.15);
+    margin: 12px auto;
+}
+
+button {
+    border: none;
+    background: #8fc8ed;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 7px;
+    transition: .2s;
+}
+
+button:hover {
+    background: #559acb;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #cceaff;
+    border-radius: 14px;
+    font-family: inherit;
+    margin: 8px 0;
+    outline: none;
+    color: var(--text);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255,255,255,.92);
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 -4px 15px rgba(85,154,203,.1);
+    z-index: 20;
+}
+
+#pageNumber {
+    font-weight: 800;
+    color: #559acb;
+}
+
+.big-emoji {
+    font-size: 75px;
+    margin: 15px;
+}
+
+.heart {
+    font-size: 35px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    transition: .2s;
+}
+
+.heart:hover {
+    transform: scale(1.3);
+}
+
+.result {
+    background: #eaf7ff;
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 15px;
+    min-height: 45px;
+    line-height: 1.6;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: min(420px, 95%);
+    margin: 15px auto;
+}
+
+.box-item {
+    background: #d7efff;
+    border: 2px solid #a9d8f5;
+    border-radius: 16px;
+    min-height: 90px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.box-item:hover {
+    background: #b9e1fa;
+}
+
+.wish-item {
+    background: #eaf7ff;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+.letter {
+    text-align: left;
+    white-space: pre-line;
+    line-height: 1.8;
+}
+
+.candle {
+    display: inline-block;
+    font-size: 35px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.candle.blown {
+    opacity: .35;
+}
+
+.mail {
+    font-size: 85px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.mail:hover {
+    transform: scale(1.1);
+}
+
+.memory-card {
+    height: 85px;
+    background: #cceaff;
+    color: #559acb;
+    border-radius: 14px;
+    font-size: 28px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.memory-card.matched {
+    background: #eaf7ff;
+    opacity: .7;
+    cursor: default;
+}
+
+#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+}
+
+@media(max-width: 480px) {
+    .card { padding: 22px 17px; }
+    .page { padding-top: 25px; }
+    .navigation { gap: 5px; }
+    .navigation button { padding: 10px 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<!-- PAGE 1: WELCOME -->
+<section class="page active" id="page1">
+    <div class="big-emoji">🎂💙</div>
+    <h1 class="script">A little something for you...</h1>
+    <div class="card">
+        <h2>HAPPY BIRTHDAY, BABI!</h2>
+        <p>I made something special for you. It's filled with little surprises, messages, and things I want you to see.</p>
+        <p>Are you ready? Don't rush. Enjoy every page! 🥹</p>
+        <button onclick="nextPage()">OPEN YOUR SURPRISE ✨</button>
+    </div>
+</section>
+
+<!-- PAGE 2: AGE SURPRISE -->
+<section class="page" id="page2">
+    <div class="big-emoji">😭🎂</div>
+    <h1>WAIT A MINUTE...</h1>
+    <div class="card">
+        <h2>HALA, BENTE TRES KANA, BABI?! HAHAHAHAHA! 😭</h2>
+        <p>HAPPY 23RD BIRTHDAY!! 🎂💙</p>
+        <p>Enjoy your special day, babi! I hope this little website makes you smile.</p>
+    </div>
+</section>
+
+<!-- PAGE 3: COUNTDOWN -->
+<section class="page" id="page3">
+    <div class="big-emoji">⏳💙</div>
+    <h1>Birthday Countdown</h1>
+    <div class="card">
+        <p>Counting down to your special day!</p>
+        <h1 id="countdown">Loading...</h1>
+        <p>November 9 will always be a special date. 🥹</p>
+    </div>
+</section>
+
+<!-- PAGE 4: BIRTHDAY LETTER -->
+<section class="page" id="page4">
+    <div class="big-emoji">💌</div>
+    <h1>A Letter For You</h1>
+    <div class="card letter">
+        <p>Happy birthday, babi ko! 💙
+
+I hope you know how special you are to me. I'm really thankful that I got to meet you and that we became part of each other's lives.
+
+Thank you for making me feel loved, for listening to me, and for being someone I can share my random thoughts and little stories with. Even the simplest moments become special because I get to share them with you.
+
+I hope this new chapter brings you happiness, good health, peace, and more opportunities. I hope you get closer to all the dreams you have for yourself. Always remember that you deserve good things in life.
+
+And of course, I hope we get to have more food trips, dates, and adventures together. Sana makapag-travel na rin tayo sa iba't ibang places in the future and make more memories together. I hope that someday, we'll both become financially stable so we can finally do the things we've been dreaming of and enjoy the life we always talk about.
+
+I know we still have a lot of things to achieve, and we might face challenges along the way, but I hope we continue supporting each other and growing together. One day at a time lang, babi ko.
+
+I can't wait for all the places we'll go, the food we'll try, and the memories we'll make. More birthdays and more adventures with you!
+
+I love you, babi ko. 💙</p>
+    </div>
+</section>
+
+<!-- PAGE 5: WISH JAR -->
+<section class="page" id="page5">
+    <div class="big-emoji">🫙✨</div>
+    <h1>Your Wish Jar</h1>
+    <div class="card">
+        <p>Write down your birthday wishes! Add as many as you want.</p>
+        <input id="wishInput" placeholder="Write a wish here...">
+        <button onclick="addWish()">Put in the jar 💙</button>
+        <div id="wishList"></div>
+        <p><small>Tap a wish when you want to remove it.</small></p>
+    </div>
+</section>
+
+<!-- PAGE 6: SECRET GIFT -->
+<section class="page" id="page6">
+    <div class="big-emoji">🎁</div>
+    <h1>A Secret Gift</h1>
+    <div class="card">
+        <p>There's a gift waiting for you...</p>
+        <p>But first, you have to open it!</p>
+        <button onclick="openGift()">OPEN YOUR GIFT 🎀</button>
+        <div id="giftResult" class="result" style="display:none">
+            <h2>YOUR GIFT IS...</h2>
+            <div class="big-emoji">💙</div>
+            <p>Unlimited hugs, more food trips, random dates, and lots of memories with me!</p>
+            <p>Claim whenever available. HAHAHA! 🥹</p>
+        </div>
+    </div>
+</section>
+
+<!-- PAGE 7: CLICKABLE HEARTS -->
+<section class="page" id="page7">
+    <div class="big-emoji">💗</div>
+    <h1>Pick a Heart</h1>
+    <div class="card">
+        <p>Each heart has a little message for you. Tap one!</p>
+        <div>
+            <span class="heart" onclick="heartMessage(0)">💙</span>
+            <span class="heart" onclick="heartMessage(1)">💗</span>
+            <span class="heart" onclick="heartMessage(2)">🤍</span>
+            <span class="heart" onclick="heartMessage(3)">🩵</span>
+            <span class="heart" onclick="heartMessage(4)">💜</span>
+        </div>
+        <div id="heartResult" class="result">Choose a heart to reveal your message!</div>
+    </div>
+</section>
+
+<!-- PAGE 8: BIRTHDAY CAKE -->
+<section class="page" id="page8">
+    <div class="big-emoji">🎂</div>
+    <h1>Make a Birthday Wish!</h1>
+    <div class="card">
+        <p>Here is a little birthday cake for you.</p>
+        <h1>🎂</h1>
+        <p>Tap each candle to blow it out!</p>
+        <div>
+            <span class="candle" onclick="blowCandle(this)">🕯️</span>
+            <span class="candle" onclick="blowCandle(this)">🕯️</span>
+            <span class="candle" onclick="blowCandle(this)">🕯️</span>
+        </div>
+        <div id="cakeResult" class="result">Blow out all three candles!</div>
+        <button onclick="resetCake()">Light them again 🔥</button>
+    </div>
+</section>
+
+<!-- PAGE 9: OPEN WHEN LETTERS -->
+<section class="page" id="page9">
+    <div class="big-emoji">✉️</div>
+    <h1>Open When...</h1>
+    <div class="card">
+        <p>Choose a letter depending on how you're feeling.</p>
+        <button onclick="openWhen(0)">When you're feeling down</button>
+        <button onclick="openWhen(1)">When you can't sleep</button>
+        <button onclick="openWhen(2)">When you miss me</button>
+        <button onclick="openWhen(3)">When you need encouragement</button>
+        <button onclick="openWhen(4)">When you're happy</button>
+        <div id="openWhenResult" class="result">Pick one little letter. 💙</div>
+    </div>
+</section>
+
+<!-- PAGE 10: RANDOM LOVE NOTES -->
+<section class="page" id="page10">
+    <div class="big-emoji">💌</div>
+    <h1>Random Love Notes</h1>
+    <div class="card">
+        <p>Feeling curious? Get a random little note!</p>
+        <button onclick="randomNote()">GET A NOTE 💙</button>
+        <div id="noteResult" class="result">Your random note will appear here!</div>
+    </div>
+</section>
+
+<!-- PAGE 11: TREASURE HUNT -->
+<section class="page" id="page11">
+    <div class="big-emoji">🗝️</div>
+    <h1>Hidden Treasure Hunt</h1>
+    <div class="card">
+        <p>There are 3 hidden hearts among these 9 boxes. Find them all!</p>
+        <div class="grid" id="treasureGrid"></div>
+        <div id="treasureResult" class="result">Found: 0 / 3 hearts</div>
+        <button onclick="resetTreasure()">Try again 🔄</button>
+    </div>
+</section>
+
+<!-- PAGE 12: MESSAGE IN A BOTTLE -->
+<section class="page" id="page12">
+    <div class="big-emoji">🍾</div>
+    <h1>Message in a Bottle</h1>
+    <div class="card">
+        <p>A little message is waiting inside this bottle.</p>
+        <button onclick="openBottle()">OPEN THE BOTTLE ✨</button>
+        <div id="bottleResult" class="result">Tap to reveal your message!</div>
+    </div>
+</section>
+
+<!-- PAGE 13: THREE MYSTERY BOXES -->
+<section class="page" id="page13">
+    <div class="big-emoji">🎁🎁🎁</div>
+    <h1>Three Mystery Boxes</h1>
+    <div class="card">
+        <p>Choose a box. Each one has a different surprise!</p>
+        <div class="grid">
+            <div class="box-item" onclick="openMystery(0)" id="mystery0">🎁</div>
+            <div class="box-item" onclick="openMystery(1)" id="mystery1">🎁</div>
+            <div class="box-item" onclick="openMystery(2)" id="mystery2">🎁</div>
+        </div>
+        <div id="mysteryResult" class="result">Which one will you choose?</div>
+    </div>
+</section>
+
+<!-- PAGE 14: MEMORY GAME -->
+<section class="page" id="page14">
+    <div class="big-emoji">🧩</div>
+    <h1>Memory Matching Game</h1>
+    <div class="card">
+        <p>Find all the matching pairs!</p>
+        <div class="grid" id="memoryGrid"></div>
+        <div id="memoryResult" class="result">Matches: 0 / 4</div>
+        <button onclick="startMemoryGame()">Restart game 🔄</button>
+    </div>
+</section>
+
+<!-- PAGE 15: SKY FULL OF WISHES -->
+<section class="page" id="page15">
+    <div class="big-emoji">🌌⭐</div>
+    <h1>A Sky Full of Wishes</h1>
+    <div class="card">
+        <p>Make a wish and send it to the stars!</p>
+        <input id="starWish" placeholder="Your wish goes here...">
+        <button onclick="sendWish()">Send to the sky ⭐</button>
+        <div id="starResult" class="result">Your wishes will appear here!</div>
+    </div>
+</section>
+
+<!-- PAGE 16: BIRTHDAY MAILBOX -->
+<section class="page" id="page16">
+    <div class="big-emoji">📬</div>
+    <h1>Your Birthday Mailbox</h1>
+    <div class="card">
+        <p>You have a special birthday mail waiting!</p>
+        <div class="mail" onclick="openMail()">💌</div>
+        <p>Tap the envelope to open it.</p>
+        <div id="mailResult" class="result">You have 1 unread message!</div>
+    </div>
+</section>
+
+<!-- PAGE 17: FINAL CELEBRATION -->
+<section class="page" id="page17">
+    <div class="big-emoji">🎉🎂💙</div>
+    <h1 class="script">Happy Birthday, Babi!</h1>
+    <div class="card">
+        <h2>THIS ISN'T THE END!</h2>
+        <p>There are still so many memories waiting for us.</p>
+        <p>More food trips, more dates, more random moments, more adventures, and hopefully more places to explore together.</p>
+        <p>Thank you for being part of my life. I hope your day is filled with happiness and everything that makes you smile.</p>
+        <h2>I LOVE YOU, BABI KO! 💙</h2>
+        <button onclick="celebrateAgain()">CELEBRATE AGAIN! 🎉</button>
+        <button onclick="goToPage(1)">START FROM THE BEGINNING ↩</button>
+    </div>
+</section>
+
+<!-- PAGE NAVIGATION -->
+<div class="navigation">
+    <button id="prevBtn" onclick="prevPage()">← Previous</button>
+    <span id="pageNumber">1 / 17</span>
+    <button id="nextBtn" onclick="nextPage()">Next →</button>
+</div>
+
+<script>
+/* PAGE NAVIGATION */
+
+let currentPage = 1;
+const totalPages = 17;
+
+function showPage(number) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+
+    document.getElementById('page' + number).classList.add('active');
+
+    currentPage = number;
+
+    document.getElementById('pageNumber').textContent =
+        currentPage + ' / ' + totalPages;
+
+    document.getElementById('prevBtn').style.visibility =
+        currentPage === 1 ? 'hidden' : 'visible';
+
+    document.getElementById('nextBtn').style.visibility =
+        currentPage === totalPages ? 'hidden' : 'visible';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextPage() {
+    if (currentPage < totalPages) {
+        showPage(currentPage + 1);
+    }
+}
+
+function prevPage() {
+    if (currentPage > 1) {
+        showPage(currentPage - 1);
+    }
+}
+
+function goToPage(number) {
+    showPage(number);
+}
+
+/* COUNTDOWN */
+
+function updateCountdown() {
+    const now = new Date();
+    let year = now.getFullYear();
+
+    let birthday = new Date(year, 10, 9, 0, 0, 0);
+
+    if (now >= birthday) {
+        birthday = new Date(year + 1, 10, 9, 0, 0, 0);
+    }
+
+    const difference = birthday - now;
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((difference / (1000 * 60)) % 60);
+    const seconds = Math.floor((difference / 1000) % 60);
+
+    document.getElementById('countdown').textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* WISH JAR */
+
+function addWish() {
+    const input = document.getElementById('wishInput');
+    const wish = input.value.trim();
+
+    if (!wish) {
+        alert('Write a wish first! 💙');
+        return;
+    }
+
+    const item = document.createElement('div');
+    item.className = 'wish-item';
+    item.textContent = '⭐ ' + wish + ' (tap to remove)';
+
+    item.onclick = () => item.remove();
+
+    document.getElementById('wishList').appendChild(item);
+    input.value = '';
+}
+
+/* SECRET GIFT */
+
+function openGift() {
+    document.getElementById('giftResult').style.display = 'block';
+}
+
+/* HEART MESSAGES */
+
+const heartMessages = [
+    'You are one of my favorite people in this world. 💙',
+    'Thank you for making ordinary days feel special. 🥹',
+    'I hope you never forget how much you are appreciated. 🤍',
+    'You make me happy in the simplest ways. 🩵',
+    'Sending you a little reminder that you are loved. 💜'
+];
+
+function heartMessage(index) {
+    document.getElementById('heartResult').textContent =
+        heartMessages[index];
+}
+
+/* BIRTHDAY CAKE */
+
+function blowCandle(candle) {
+    if (candle.classList.contains('blown')) return;
+
+    candle.classList.add('blown');
+    candle.textContent = '💨';
+
+    const remaining =
+        document.querySelectorAll('.candle:not(.blown)').length;
+
+    if (remaining === 0) {
+        document.getElementById('cakeResult').textContent =
+            'YAY! All candles are out! Make a wish, babi! 🎂💙';
+        launchConfetti();
+    } else {
+        document.getElementById('cakeResult').textContent =
+            `Good job! ${remaining} candle(s) left!`;
+    }
+}
+
+function resetCake() {
+    document.querySelectorAll('.candle').forEach(candle => {
+        candle.classList.remove('blown');
+        candle.textContent = '🕯️';
+    });
+
+    document.getElementById('cakeResult').textContent =
+        'Blow out all three candles!';
+}
+
+/* OPEN WHEN LETTERS */
+
+const openWhenMessages = [
+    'Hey, babi. If you are feeling down, I hope you remember that difficult days do not last forever. Take your time and be gentle with yourself. You do not have to figure everything out today. I believe in you. 💙',
+
+    'If you cannot sleep, I hope your mind gets a little rest. Put your worries aside for a while and remember that tomorrow is another day. I hope you get a peaceful night, babi. 🌙',
+
+    'If you miss me, then here is your reminder that I miss you too! Imagine all the food trips and dates we still have waiting for us. More moments together soon! 🥹',
+
+    'You can do it, babi! I know you have your own goals and things you want to achieve. Keep going at your own pace. I am proud of you, even in the little things. 💙',
+
+    'If you are happy right now, I hope you enjoy every second of it! You deserve moments like these. Keep that smile and make more happy memories. 🤍'
+];
+
+function openWhen(index) {
+    document.getElementById('openWhenResult').textContent =
+        openWhenMessages[index];
+}
+
+/* RANDOM LOVE NOTES */
+
+const loveNotes = [
+    'I would still choose our random conversations. 💙',
+    'You are my favorite notification. 📱',
+    'I hope we get to try lots of new food together!',
+    'You make my days a little brighter. ☀️',
+    'I am thankful for all the little things you do.',
+    'More dates and adventures with you, please!',
+    'I hope we get to travel to many places together.',
+    'You are someone I am happy to have in my life.',
+    'Sending you an unlimited supply of virtual kisses! 😘',
+    'I hope today reminds you how special you are.'
+];
+
+function randomNote() {
+    const note = loveNotes[
+        Math.floor(Math.random() * loveNotes.length)
+    ];
+
+    document.getElementById('noteResult').textContent = note;
+}
+
+/* TREASURE HUNT */
+
+let treasureLocations = [];
+let foundTreasures = 0;
+let treasureFinished = false;
+
+function setupTreasure() {
+    const grid = document.getElementById('treasureGrid');
+    grid.innerHTML = '';
+
+    treasureLocations = [];
+
+    while (treasureLocations.length < 3) {
+        const random = Math.floor(Math.random() * 9);
+
+        if (!treasureLocations.includes(random)) {
+            treasureLocations.push(random);
+        }
+    }
+
+    foundTreasures = 0;
+    treasureFinished = false;
+
+    for (let i = 0; i < 9; i++) {
+        const box = document.createElement('div');
+
+        box.className = 'box-item';
+        box.textContent = '🎁';
+
+        box.onclick = () => {
+            if (box.dataset.opened) return;
+
+            box.dataset.opened = 'true';
+
+            if (treasureLocations.includes(i)) {
+                box.textContent = '💙';
+                foundTreasures++;
+            } else {
+                box.textContent = '☁️';
+            }
+
+            document.getElementById('treasureResult').textContent =
+                `Found: ${foundTreasures} / 3 hearts`;
+
+            if (foundTreasures === 3 && !treasureFinished) {
+                treasureFinished = true;
+
+                document.getElementById('treasureResult').textContent =
+                    'YOU FOUND ALL 3 HEARTS! You found my little treasure! 💙';
+
+                launchConfetti();
+            }
+        };
+
+        grid.appendChild(box);
+    }
+
+    document.getElementById('treasureResult').textContent =
+        'Found: 0 / 3 hearts';
+}
+
+function resetTreasure() {
+    setupTreasure();
+}
+
+setupTreasure();
+
+/* MESSAGE IN A BOTTLE */
+
+const bottleMessages = [
+    'If I could give you one thing today, it would be the ability to see yourself the way I see you. You are special, babi. 💙',
+    'A little reminder from me: I am thankful for you and all the memories we have made.',
+    'May this year bring you more opportunities, peaceful days, and reasons to smile.',
+    'Some of my favorite moments are the simple ones we share. Here is to making more!',
+    'No matter how busy life gets, I hope we always make time for our little adventures.'
+];
+
+function openBottle() {
+    const message = bottleMessages[
+        Math.floor(Math.random() * bottleMessages.length)
+    ];
+
+    document.getElementById('bottleResult').textContent = message;
+}
+
+/* THREE MYSTERY BOXES */
+
+const mysteryGifts = [
+    '🎟️ Your prize: One food trip date with me! You get to help choose where we eat!',
+    '💌 Your prize: One extra-long birthday letter filled with appreciation and love.',
+    '🌍 Your prize: A promise to keep dreaming about all the places we will visit together!'
+];
+
+let openedMystery = [];
+
+function openMystery(index) {
+    if (openedMystery.includes(index)) return;
+
+    openedMystery.push(index);
+
+    document.getElementById('mystery' + index).textContent = '💝';
+
+    document.getElementById('mysteryResult').textContent =
+        mysteryGifts[index];
+
+    if (openedMystery.length === 3) {
+        document.getElementById('mysteryResult').textContent +=
+            ' You opened all three boxes! 🎉';
+    }
+}
+
+/* MEMORY MATCHING GAME */
+
+const memorySymbols = ['💙', '🎂', '⭐', '💌'];
+
+let memoryCards = [];
+let selectedCards = [];
+let matchedPairs = 0;
+let memoryLocked = false;
+
+function startMemoryGame() {
+    memoryCards = [...memorySymbols, ...memorySymbols]
+        .sort(() => Math.random() - 0.5);
+
+    selectedCards = [];
+    matchedPairs = 0;
+    memoryLocked = false;
+
+    const grid = document.getElementById('memoryGrid');
+    grid.innerHTML = '';
+
+    memoryCards.forEach((symbol, index) => {
+        const card = document.createElement('div');
+
+        card.className = 'memory-card';
+        card.textContent = '?';
+
+        card.dataset.symbol = symbol;
+        card.dataset.index = index;
+
+        card.onclick = () => flipMemoryCard(card);
+
+        grid.appendChild(card);
+    });
+
+    document.getElementById('memoryResult').textContent =
+        'Matches: 0 / 4';
+}
+
+function flipMemoryCard(card) {
+    if (
+        memoryLocked ||
+        card.classList.contains('matched') ||
+        selectedCards.includes(card)
+    ) {
+        return;
+    }
+
+    card.textContent = card.dataset.symbol;
+    selectedCards.push(card);
+
+    if (selectedCards.length === 2) {
+        const [first, second] = selectedCards;
+
+        if (first.dataset.symbol === second.dataset.symbol) {
+            first.classList.add('matched');
+            second.classList.add('matched');
+
+            matchedPairs++;
+            selectedCards = [];
+
+            document.getElementById('memoryResult').textContent =
+                `Matches: ${matchedPairs} / 4`;
+
+            if (matchedPairs === 4) {
+                document.getElementById('memoryResult').textContent =
+                    'YOU WON! Great job, babi! 🥳💙';
+
+                launchConfetti();
+            }
+        } else {
+            memoryLocked = true;
+
+            setTimeout(() => {
+                first.textContent = '?';
+                second.textContent = '?';
+
+                selectedCards = [];
+                memoryLocked = false;
+            }, 800);
+        }
+    }
+}
+
+startMemoryGame();
+
+/* SKY FULL OF WISHES */
+
+function sendWish() {
+    const input = document.getElementById('starWish');
+    const wish = input.value.trim();
+
+    if (!wish) {
+        alert('Write a wish first! ⭐');
+        return;
+    }
+
+    const item = document.createElement('p');
+    item.textContent = '⭐ ' + wish;
+
+    document.getElementById('starResult').appendChild(item);
+
+    input.value = '';
+}
+
+/* BIRTHDAY MAILBOX */
+
+let mailOpened = false;
+
+function openMail() {
+    const result = document.getElementById('mailResult');
+
+    if (mailOpened) {
+        result.textContent =
+            'You already opened your birthday mail! Sending you another virtual kiss. 💙';
+        return;
+    }
+
+    mailOpened = true;
+
+    result.textContent =
+        'FROM: YOUR FAVORITE PERSON 💌 | TO: BABI KO 💙 | MESSAGE: Happy birthday! I hope you never stop believing in yourself. I wish you happiness, good health, success, and all the good things you deserve. Thank you for being you. I love you!';
+}
+
+/* CONFETTI */
+
+let confettiPieces = [];
+let confettiAnimation = null;
+
+function launchConfetti() {
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    confettiPieces = [];
+
+    for (let i = 0; i < 120; i++) {
+        confettiPieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * -canvas.height,
+            size: Math.random() * 8 + 4,
+            speed: Math.random() * 3 + 2,
+            drift: Math.random() * 2 - 1,
+            color: ['#8fc8ed', '#ffffff', '#559acb', '#cceaff'][Math.floor(Math.random() * 4)]
+        });
+    }
+
+    if (confettiAnimation) {
+        cancelAnimationFrame(confettiAnimation);
+    }
+
+    const startTime = performance.now();
+
+    function animate(time) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        confettiPieces.forEach(piece => {
+            ctx.fillStyle = piece.color;
+            ctx.fillRect(piece.x, piece.y, piece.size, piece.size);
+
+            piece.y += piece.speed;
+            piece.x += piece.drift;
+
+            if (piece.y > canvas.height) {
+                piece.y = -10;
+            }
+        });
+
+        if (time - startTime < 3500) {
+            confettiAnimation = requestAnimationFrame(animate);
+        } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confettiAnimation = null;
+        }
+    }
+
+    confettiAnimation = requestAnimationFrame(animate);
+}
+
+function celebrateAgain() {
+    launchConfetti();
+}
+
+/* INITIAL NAVIGATION */
+
+showPage(1);
+</script>
+
+</body>
+</html>
